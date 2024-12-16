@@ -1,5 +1,5 @@
 .grid {
-    background: #00000015;
+    /* background: #00000015; */
     /* box-shadow: 0px 0px 10px #00000015; */
     padding: 20px;
     border-radius: 15px;
@@ -7,6 +7,11 @@
     gap: 1px;
     grid-template-columns: repeat(4, 1fr);
     /* grid: ; */
+}
+
+#grid-wrapper {
+    height: 80vh;
+    width: 80vh;
 }
 
 .generation-button {
@@ -58,24 +63,32 @@
 }
 
 .cell {
-    width: 40px;
-    height: 40px;
     background-color: white;
-    border-radius: 5px;
+    /* border-radius: 5px; */
+    border-radius: 10%;
     align-items: center;
     justify-content: center;
     display: flex;
+    position: relative
 }
 
 .filled-cell {
     box-shadow: 0px 0px 5px #00000020;
 }
 
-.cell>span {
-    font-size: 20px;
+.cell>span:not(.cell-number) {
+    font-size: 1em;
     font-family: "Source Sans Pro", sans-serif;
     text-transform: uppercase;
     color: #343434;
+}
+
+.cell-number {
+    position: absolute;
+    font-size: 50%;
+    color: black;
+    left: 5%;
+    top: 2%;
 }
 
 main {
