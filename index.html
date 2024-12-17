@@ -3,6 +3,7 @@
 <head>
     <title>Crossword Puzzle Generator</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/slider.css">
     <link rel="shortcut icon" href="https://mitchum.blog/wp-content/uploads/2019/05/favicon.png" />
 </head>
 
@@ -13,60 +14,100 @@
         <span id="density-title">Density: 0% | Words: 0</span>
         <div id="grid-wrapper" class="grid">
         </div>
-        <button class="generation-button" onclick="generateCrossword()">
-            Generate
+        <div class="result-container">
+        </div>
+        <button class="button-37 export-button disabled" onclick="exportCrossword()">
+            Export
         </button>
-        <div class="size-settings">
-            <div>
-                <span>WIDTH</span>
-                <div class="grid">
-                    <button onclick="createField(4,null)" class="grid-size-btn">4</button>
-                    <button onclick="createField(5,null)" class="grid-size-btn">5</button>
-                    <button onclick="createField(6,null)" class="grid-size-btn">6</button>
-                    <button onclick="createField(7,null)" class="grid-size-btn">7</button>
-                    <button onclick="createField(8,null)" class="grid-size-btn">8</button>
-                    <button onclick="createField(9,null)" class="grid-size-btn">9</button>
-                    <button onclick="createField(10,null)" class="grid-size-btn">10</button>
-                    <button onclick="createField(11,null)" class="grid-size-btn">11</button>
-                    <button onclick="createField(12,null)" class="grid-size-btn">12</button>
-                    <button onclick="createField(13,null)" class="grid-size-btn">13</button>
-                    <button onclick="createField(14,null)" class="grid-size-btn">14</button>
-                    <button onclick="createField(15,null)" class="grid-size-btn">15</button>
-                    <button onclick="createField(16,null)" class="grid-size-btn">16</button>
-                    <button onclick="createField(17,null)" class="grid-size-btn">17</button>
-                    <button onclick="createField(18,null)" class="grid-size-btn">18</button>
-                    <button onclick="createField(19,null)" class="grid-size-btn">19</button>
-                    <button onclick="createField(20,null)" class="grid-size-btn">20</button>
+        <div class="settings-sidebar">
+            <button class="button-37 generation-button" onclick="generateCrossword()">
+                Generate
+            </button>
+            <div class="size-settings-container">
+                <div class="range-container">
+                    <span class="rangeValue" id="width-range-value">0</span>
+                    <Input id="width-range" class="range" type="range" value="10" min="4" max="20">
+                    </Input>
+                </div>
+                <div class="range-container">
+                    <span class="rangeValue" id="height-range-value">0</span>
+                    <Input id="height-range" class="range" type="range" value="10" min="4" max="20">
+                    </Input>
                 </div>
             </div>
-            <div style="height: 10px;"></div>
-            <div>
-                <span>HEIGHT</span>
-                <div class="grid">
-                    <button onclick="createField(null,4)" class="grid-size-btn">4</button>
-                    <button onclick="createField(null,5)" class="grid-size-btn">5</button>
-                    <button onclick="createField(null,6)" class="grid-size-btn">6</button>
-                    <button onclick="createField(null,7)" class="grid-size-btn">7</button>
-                    <button onclick="createField(null,8)" class="grid-size-btn">8</button>
-                    <button onclick="createField(null,9)" class="grid-size-btn">9</button>
-                    <button onclick="createField(null,10)" class="grid-size-btn">10</button>
-                    <button onclick="createField(null,11)" class="grid-size-btn">11</button>
-                    <button onclick="createField(null,12)" class="grid-size-btn">12</button>
-                    <button onclick="createField(null,13)" class="grid-size-btn">13</button>
-                    <button onclick="createField(null,14)" class="grid-size-btn">14</button>
-                    <button onclick="createField(null,15)" class="grid-size-btn">15</button>
-                    <button onclick="createField(null,16)" class="grid-size-btn">16</button>
-                    <button onclick="createField(null,17)" class="grid-size-btn">17</button>
-                    <button onclick="createField(null,18)" class="grid-size-btn">18</button>
-                    <button onclick="createField(null,19)" class="grid-size-btn">19</button>
-                    <button onclick="createField(null,20)" class="grid-size-btn">20</button>
+            <div style="margin-top: 20px;">
+                <span style="font-variant: small-caps;">Same letter word count</span>
+                <div id="same-letter-word-count-settings" class="hor-layout">
+                    <button class="arrow-button left-arrow-button"></button>
+                    <span class="selector-counter">10</span>
+                    <button class="arrow-button right-arrow-button"></button>
                 </div>
             </div>
+            <div style="margin-top: 10px;">
+                <span style="font-variant: small-caps;">Same letter group count</span>
+                <div id="same-letter-group-count-settings" class="hor-layout">
+                    <button class="arrow-button left-arrow-button"></button>
+                    <span class="selector-counter">10</span>
+                    <button class="arrow-button right-arrow-button"></button>
+                </div>
+            </div>
+            <div style="margin-top: 10px;" class="hor-layout">
+                <span style="font-variant: small-caps;">Random first letter</span>
+                <div style="width: 10px;"></div>
+                <input id="first-letter-toggle" type="checkbox" style="width: 20px; height: 20px;" value="0" />
+            </div>
+            <div style="margin-top: 10px;" class="hor-layout">
+                <span style="font-variant: small-caps;">Start with grouped words</span>
+                <div style="width: 10px;"></div>
+                <input id="start-with-toggle" type="checkbox" style="width: 20px; height: 20px;" value="0" />
+            </div>
+            <div
+                style="background-color: #3d00007d; margin-top: 10px; padding: 10px; border-radius: 5px; display: flex; flex-direction: column; align-items: center;">
+                <span style="font-variant: small-caps;">Dev options</span>
+                <div id="dev-option-container">
+                    <div class="hor-layout" style="width: 100%; justify-content: space-between;">
+                        <span style="font-variant: small-caps; font-size: 15px;">Number of generated grids</span>
+                        <input type="number" class="numeric-input" style="width: 80px;" id="grid-count">
+                    </div>
+                    <div class="hor-layout" style="width: 100%; justify-content: space-between;">
+                        <span style="font-variant: small-caps; font-size: 15px;">Words insert interations</span>
+                        <input type="number" class="numeric-input" style="width: 80px;" id="insert-iterations">
+                    </div>
+                    <div class="hor-layout" style="width: 100%; justify-content: space-between;">
+                        <span style="font-variant: small-caps;font-size: 15px;">Words recursion interations</span>
+                        <div style="width: 10px;"></div>
+                        <input type="number" class="numeric-input" style="width: 80px;" id="word-interations">
+                    </div>
+                </div>
+                <div style="margin-top: 10px;" class="hor-layout">
+                    <span style="font-variant: small-caps;">enable dev options</span>
+                    <div style="width: 10px;"></div>
+                    <input id="dev-options-toggle" type="checkbox" style="width: 20px; height: 20px;" value="0" />
+                </div>
+            </div>
+        </div>
         </div>
         <div id="loading"></div>
     </main>
     <script src="lib/library.js"></script>
     <script src="lib/crosswordGenerator.js"></script>
+    <script src="lib/wordsManagement.js"></script>
+    <script src="lib/crosswordSettings.js"></script>
+    <script>
+        const inputs = document.getElementsByClassName('numeric-input');
+        for (let i = 0; i < inputs.length; i++) {
+            const input = inputs[i];
+
+            input.addEventListener('keydown', function (e) {
+                if (
+                    !e.key.match(/[0-9]/) &&
+                    !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)
+                ) {
+                    e.preventDefault();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
