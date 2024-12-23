@@ -16,7 +16,7 @@
         </div>
         <div class="result-container">
         </div>
-        <button class="button-37 export-button disabled" onclick="exportCrossword()">
+        <button class="button-37 export-button disabled" onclick="exportSelectedCrossword()">
             Export
         </button>
         <div class="settings-sidebar">
@@ -52,9 +52,25 @@
                 </div>
             </div>
             <div style="margin-top: 10px;" class="hor-layout">
-                <span style="font-variant: small-caps;">Random first letter</span>
+                <span style="font-variant: small-caps;">Random revealed letters</span>
                 <div style="width: 10px;"></div>
                 <input id="first-letter-toggle" type="checkbox" style="width: 20px; height: 20px;" value="0" />
+            </div>
+            <div style="margin-top: 10px;">
+                <span style="font-variant: small-caps;">Revealed letter count</span>
+                <div id="revealed-letter-count-settings" class="hor-layout">
+                    <button class="arrow-button left-arrow-button"></button>
+                    <span class="selector-counter">1</span>
+                    <button class="arrow-button right-arrow-button"></button>
+                </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <span style="font-variant: small-caps;">Revealed word count</span>
+                <div id="revealed-word-count-settings" class="hor-layout">
+                    <button class="arrow-button left-arrow-button"></button>
+                    <span class="selector-counter">1</span>
+                    <button class="arrow-button right-arrow-button"></button>
+                </div>
             </div>
             <div style="margin-top: 10px;" class="hor-layout">
                 <span style="font-variant: small-caps;">Start with grouped words</span>
@@ -85,6 +101,24 @@
                     <input id="dev-options-toggle" type="checkbox" style="width: 20px; height: 20px;" value="0" />
                 </div>
             </div>
+        </div>
+        <button id="word-list-open-button"
+            style="position: absolute; left: 330px; top: 10px; height: 30px; width: 30px; border-radius: 5px; border-width: 0px; background-color: aliceblue; padding: 3px;">
+            <svg viewBox="0 0 256 256">
+                <rect fill="none" height="256" width="256" />
+                <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" x1="104"
+                    x2="216" y1="128" y2="128" />
+                <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" x1="104"
+                    x2="216" y1="64" y2="64" />
+                <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" x1="104"
+                    x2="216" y1="192" y2="192" />
+                <polyline fill="none" points="40 60 56 52 56 108" stroke="#000" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="8" />
+                <path d="M41.1,152.6a14,14,0,1,1,24.5,13.2L40,200H68" fill="none" stroke="#000" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="8" />
+            </svg></button>
+        <div id="word-list"
+            style="position: absolute; left: 330px; top: 50px; background-color: rgb(17, 73, 122); border-width: 2px; border-color: rgb(248, 252, 252); display: flex; flex-direction: column; padding: 10px; border-radius: 5px; pointer-events: none;">
         </div>
         </div>
         <div id="loading"></div>
